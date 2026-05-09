@@ -124,7 +124,6 @@
     :root { --header-h: 48px; }
     .site-header { padding: 0 1rem; }
     .site-header .brand { font-size: 0.76rem; }
-    .site-header .brand .brand-full { display: none; }
     .site-header .header-download { padding: 0.35rem 0.7rem; font-size: 0.7rem; }
     .lang-toggle button { padding: 0.34rem 0.55rem; font-size: 0.7rem; }
   }
@@ -148,31 +147,16 @@
     border-radius: 2px;
   }
   h1 {
-    font-size: clamp(1.9rem, 5vw, 2.65rem);
-    margin: 0 0 0.6rem;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin: 0 0 1rem;
     letter-spacing: -0.02em;
     line-height: 1.15;
     color: var(--fg-strong);
     font-weight: 600;
   }
-  h1 .h1-en {
-    display: block;
-    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
-    color: var(--muted);
-    font-weight: 500;
-    margin-top: 0.5rem;
-    letter-spacing: -0.01em;
-  }
   .tagline {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: var(--fg);
-    margin: 1rem auto 0.4rem;
-    font-family: var(--font-sans);
-    max-width: 36rem;
-  }
-  .tagline-en {
-    font-size: 0.95rem;
-    color: var(--muted);
     margin: 0 auto 2.5rem;
     font-family: var(--font-sans);
     max-width: 36rem;
@@ -221,11 +205,6 @@
     color: var(--accent-purple);
     margin-right: 0.5rem;
   }
-  h2 .h2-en {
-    color: var(--muted-2);
-    margin-left: 0.5rem;
-    font-weight: 400;
-  }
   h3 {
     font-size: 0.95rem;
     margin: 1.75rem 0 0.75rem;
@@ -236,10 +215,6 @@
   p, li {
     font-size: 0.98rem;
     color: var(--fg);
-  }
-  p.en, li.en, .en {
-    color: var(--muted);
-    font-size: 0.92rem;
   }
   ul { padding-left: 1.4rem; }
   ul li { margin: 0.4rem 0; }
@@ -351,17 +326,9 @@
   .stage-card .stage-title {
     font-family: var(--font-mono);
     font-size: 1.05rem;
-    margin: 0 0 0.3rem;
+    margin: 0 0 0.5rem;
     color: var(--fg-strong);
     font-weight: 600;
-  }
-  .stage-card .stage-title-en {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--muted-2);
-    margin: 0 0 0.5rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
   }
   .stage-card .stage-sub {
     font-family: var(--font-sans);
@@ -425,15 +392,8 @@
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--fg-strong);
-    margin: 0 0 0.2rem;
-    letter-spacing: 0.02em;
-  }
-  .arch-card .arch-title-en {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    color: var(--muted-2);
     margin: 0 0 0.5rem;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
   }
   .arch-card .arch-files {
     font-family: var(--font-mono);
@@ -448,7 +408,6 @@
     margin: 0.6rem 0 0;
     line-height: 1.5;
   }
-  .arch-card .arch-note.en { color: var(--muted); }
   .arch-extends {
     text-align: center;
     font-family: var(--font-mono);
@@ -493,28 +452,6 @@
   .faq details[open] summary::before { content: "−"; }
   .faq details[open] summary { margin-bottom: 0.6rem; }
   .faq p { margin: 0.4rem 0; font-size: 0.92rem; }
-  .faq p.en { color: var(--muted); }
-
-  /* ===== Why ===== */
-  .why {
-    font-family: var(--font-sans);
-    font-style: italic;
-    color: var(--fg);
-    border-left: 2px solid var(--accent-orange);
-    padding: 0.5rem 0 0.5rem 1.1rem;
-    margin: 1rem 0;
-    line-height: 1.7;
-  }
-  .why.en { color: var(--muted); }
-  .placeholder-note {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--muted-3);
-    text-align: center;
-    margin-top: 1rem;
-    text-transform: uppercase;
-  }
 
   /* ===== Footer ===== */
   footer {
@@ -543,8 +480,7 @@
   }
 
   /* ===== Lead text under section heading ===== */
-  .lead { margin: 0 0 1rem; }
-  .lead.en { margin: 0 0 1.5rem; }
+  .lead { margin: 0 0 1.5rem; }
 </style>
 <script>
   (function() {
@@ -563,8 +499,7 @@
 <div class="site-header">
   <a class="brand" href="#top">
     <span class="dot">◉</span>
-    <span class="brand-full lang-zh-only">Personal Agent Kit</span>
-    <span class="brand-full lang-en-only">Personal Agent Kit</span>
+    <span>Personal Agent Kit</span>
   </a>
   <div class="actions">
     <a class="header-download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">
@@ -582,16 +517,10 @@
 
 <header class="hero">
   <span class="hero-tag">◉ Personal Agent Kit · v0.1.0</span>
-  <h1>
-    <span class="lang-zh-only">給你的 AI 一段連續性。</span>
-    <span class="lang-en-only">Your AI, with continuity.</span>
-    <span class="h1-en lang-zh-only">Your AI, with continuity.</span>
-    <span class="h1-en lang-en-only">給你的 AI 一段連續性。</span>
-  </h1>
+  <h1 class="lang-zh-only">給你的 AI 一段連續性。</h1>
+  <h1 class="lang-en-only">Your AI, with continuity.</h1>
   <p class="tagline lang-zh-only">建立你自己的 AI 第二大腦。 不需要程式經驗。</p>
   <p class="tagline lang-en-only">Build your personal AI second brain. No coding experience required.</p>
-  <p class="tagline-en lang-zh-only">Build your personal AI second brain. No coding experience required.</p>
-  <p class="tagline-en lang-en-only">建立你自己的 AI 第二大腦。 不需要程式經驗。</p>
   <div class="download-row">
     <a class="download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">
       <span class="lang-zh-only">↓ 下載 Kit (ZIP)</span>
@@ -604,8 +533,8 @@
 <section>
   <h2>
     <span class="glyph">◇</span>
-    <span class="lang-zh-only">這是什麼？<span class="h2-en">／ What is this</span></span>
-    <span class="lang-en-only">What is this<span class="h2-en">／ 這是什麼？</span></span>
+    <span class="lang-zh-only">這是什麼？</span>
+    <span class="lang-en-only">What is this</span>
   </h2>
   <p class="lang-zh-only">一個 AI（Claude）能讀取、整理、跨對話學習的筆記資料夾。 時間久了它會記住你的偏好, 越來越懂你。</p>
   <p class="lang-en-only">A folder of notes that an AI (Claude) reads, organizes, and learns from across conversations. Over time it remembers your preferences and gets better at helping you.</p>
@@ -616,8 +545,8 @@
 <section>
   <h2>
     <span class="glyph">◎</span>
-    <span class="lang-zh-only">你需要準備<span class="h2-en">／ What you need</span></span>
-    <span class="lang-en-only">What you need<span class="h2-en">／ 你需要準備</span></span>
+    <span class="lang-zh-only">你需要準備</span>
+    <span class="lang-en-only">What you need</span>
   </h2>
   <ul class="lang-zh-only">
     <li>一台電腦（Mac、Windows 或 Linux）</li>
@@ -636,8 +565,8 @@
 <section>
   <h2>
     <span class="glyph">▣</span>
-    <span class="lang-zh-only">設定 — 3 步驟<span class="h2-en">／ Setup — 3 steps</span></span>
-    <span class="lang-en-only">Setup — 3 steps<span class="h2-en">／ 設定 — 3 步驟</span></span>
+    <span class="lang-zh-only">設定 — 3 步驟</span>
+    <span class="lang-en-only">Setup — 3 steps</span>
   </h2>
 
   <div class="step">
@@ -717,8 +646,6 @@
         <p class="lang-en-only">Once Claude Code is running, type this and press Enter:</p>
         <pre class="lang-zh-only"><code>讀 BOOTSTRAP.md, 幫我建立系統</code></pre>
         <pre class="lang-en-only"><code>Read BOOTSTRAP.md and help me set up the system</code></pre>
-        <p class="lang-zh-only">英文也可以：<code>Read BOOTSTRAP.md and help me set up the system</code></p>
-        <p class="lang-en-only">Chinese works too: <code>讀 BOOTSTRAP.md, 幫我建立系統</code></p>
         <p class="lang-zh-only"><strong>就這樣。</strong> Claude 會接手, 訪談你幾分鐘, 然後建一個符合你的系統。</p>
         <p class="lang-en-only"><strong>That's it.</strong> Claude takes over from here — it'll interview you for a few minutes, then build a system tailored to you.</p>
       </div>
@@ -729,8 +656,8 @@
 <section>
   <h2>
     <span class="glyph">△</span>
-    <span class="lang-zh-only">系統如何成長<span class="h2-en">／ How the system grows</span></span>
-    <span class="lang-en-only">How the system grows<span class="h2-en">／ 系統如何成長</span></span>
+    <span class="lang-zh-only">系統如何成長</span>
+    <span class="lang-en-only">How the system grows</span>
   </h2>
   <p class="lead lang-zh-only">從基礎開始, 準備好再加。 大部分人不需要超出第一階段。</p>
   <p class="lead lang-en-only">You start with the basics, and add more when you're ready. Most people never need to go beyond Stage 1.</p>
@@ -740,8 +667,6 @@
       <p class="stage-num">Stage 1</p>
       <p class="stage-title lang-zh-only">基礎</p>
       <p class="stage-title lang-en-only">Basics</p>
-      <p class="stage-title-en lang-zh-only">Basics</p>
-      <p class="stage-title-en lang-en-only">基礎</p>
       <p class="stage-sub lang-zh-only">第一天</p>
       <p class="stage-sub lang-en-only">Day 1</p>
       <ul class="lang-zh-only">
@@ -761,8 +686,6 @@
       <p class="stage-num">Stage 2</p>
       <p class="stage-title lang-zh-only">延伸</p>
       <p class="stage-title lang-en-only">Extensions</p>
-      <p class="stage-title-en lang-zh-only">Extensions</p>
-      <p class="stage-title-en lang-en-only">延伸</p>
       <p class="stage-sub lang-zh-only">後續, 視需要再加</p>
       <p class="stage-sub lang-en-only">Later, by request</p>
       <ul class="lang-zh-only">
@@ -784,8 +707,6 @@
       <p class="stage-num">Stage 3</p>
       <p class="stage-title lang-zh-only">進階</p>
       <p class="stage-title lang-en-only">Advanced</p>
-      <p class="stage-title-en lang-zh-only">Advanced</p>
-      <p class="stage-title-en lang-en-only">進階</p>
       <p class="stage-sub lang-zh-only">不在這個 kit 裡</p>
       <p class="stage-sub lang-en-only">Not in this kit</p>
       <ul class="lang-zh-only">
@@ -807,8 +728,8 @@
 <section>
   <h2>
     <span class="glyph">▤</span>
-    <span class="lang-zh-only">裡面有什麼<span class="h2-en">／ What's inside</span></span>
-    <span class="lang-en-only">What's inside<span class="h2-en">／ 裡面有什麼</span></span>
+    <span class="lang-zh-only">裡面有什麼</span>
+    <span class="lang-en-only">What's inside</span>
   </h2>
   <p class="lead lang-zh-only">第一天就是「筆記＋規則＋記憶」三件套, 後續再疊上 patterns。</p>
   <p class="lead lang-en-only">Three core pieces on day 1, with patterns layered in later.</p>
@@ -818,8 +739,6 @@
       <span class="arch-glyph">◇</span>
       <p class="arch-title lang-zh-only">筆記</p>
       <p class="arch-title lang-en-only">Notes</p>
-      <p class="arch-title-en lang-zh-only">Notes</p>
-      <p class="arch-title-en lang-en-only">筆記</p>
       <p class="arch-files">knowledge/<br>references/<br>ideas/, inbox/</p>
       <p class="arch-note lang-zh-only">Claude 為你讀寫的地方。</p>
       <p class="arch-note lang-en-only">Where Claude reads and writes for you.</p>
@@ -828,8 +747,6 @@
       <span class="arch-glyph">□</span>
       <p class="arch-title lang-zh-only">規則</p>
       <p class="arch-title lang-en-only">Rules</p>
-      <p class="arch-title-en lang-zh-only">Rules</p>
-      <p class="arch-title-en lang-en-only">規則</p>
       <p class="arch-files">CLAUDE.md<br>.claude/rules/</p>
       <p class="arch-note lang-zh-only">Claude 跟你互動的方式。</p>
       <p class="arch-note lang-en-only">How Claude behaves with you specifically.</p>
@@ -838,8 +755,6 @@
       <span class="arch-glyph">◉</span>
       <p class="arch-title lang-zh-only">記憶</p>
       <p class="arch-title lang-en-only">Memory</p>
-      <p class="arch-title-en lang-zh-only">Memory</p>
-      <p class="arch-title-en lang-en-only">記憶</p>
       <p class="arch-files">proven.md<br>decisions.md</p>
       <p class="arch-note lang-zh-only">Claude 累積學會的東西。</p>
       <p class="arch-note lang-en-only">What Claude has learned over time.</p>
@@ -866,8 +781,7 @@
 <section>
   <h2>
     <span class="glyph">⬥</span>
-    <span class="lang-zh-only">FAQ<span class="h2-en">／ FAQ</span></span>
-    <span class="lang-en-only">FAQ</span>
+    <span>FAQ</span>
   </h2>
   <div class="faq">
     <details>
@@ -911,17 +825,6 @@
       <p class="lang-en-only">Plain chat forgets everything between conversations. This kit gives Claude a persistent place to read and write — so it remembers your preferences, builds on past notes, and gets more useful over time. Same Claude, with continuity.</p>
     </details>
   </div>
-</section>
-
-<section>
-  <h2>
-    <span class="glyph">+</span>
-    <span class="lang-zh-only">為什麼做這個<span class="h2-en">／ Why I built this</span></span>
-    <span class="lang-en-only">Why I built this<span class="h2-en">／ 為什麼做這個</span></span>
-  </h2>
-  <p class="why lang-zh-only">我想要一個「會記得我」的 AI, 不是每天早上都要重新自我介紹一次的那種。 所以我自己建了一個 vault, 教 Claude 怎麼維護它。 用了幾個月之後, 把可行的部分整理成這個 kit。 — Jie</p>
-  <p class="why lang-en-only">I wanted an AI that remembered me — not one I had to re-introduce myself to every morning. So I built a vault, taught Claude how to maintain it, and after months of using it daily, packaged what works into this kit. — Jie</p>
-  <p class="placeholder-note">// placeholder — Jie will edit</p>
 </section>
 
 <footer>
