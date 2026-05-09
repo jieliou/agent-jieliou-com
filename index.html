@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Agent Kit — Build your AI second brain</title>
+<meta name="description" content="Build your personal AI second brain. No coding experience required. 建立你自己的 AI 第二大腦。">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --fg: #1a1a1a;
+    --muted: #555;
+    --accent: #2d5a4a;
+    --accent-hover: #1e4234;
+    --border: #e5e3dc;
+    --card: #fff;
+    --code-bg: #f3f1ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161614;
+      --fg: #ececec;
+      --muted: #a8a8a3;
+      --accent: #6fb89f;
+      --accent-hover: #8accb4;
+      --border: #2c2c28;
+      --card: #1f1f1c;
+      --code-bg: #232320;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans CJK TC", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
+  header { text-align: center; margin-bottom: 4rem; }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .tagline { font-size: 1.15rem; color: var(--muted); margin: 0 0 0.5rem; }
+  .tagline-zh { font-size: 1.05rem; color: var(--muted); margin: 0 0 2.5rem; }
+  h2 {
+    font-size: 1.6rem;
+    margin: 4rem 0 1rem;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+  p, li { font-size: 1rem; }
+  .zh { color: var(--muted); font-size: 0.95rem; }
+  code {
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+  }
+  pre {
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    border: 1px solid var(--border);
+  }
+  pre code { background: none; padding: 0; }
+  .download {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1rem 0;
+    transition: background 0.15s;
+  }
+  .download:hover { background: var(--accent-hover); }
+  .download-row { text-align: center; margin: 2rem 0; }
+  .download-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .platforms { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1rem; }
+  @media (min-width: 600px) { .platforms { grid-template-columns: 1fr 1fr; } }
+  .platform { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .platform h4 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .platform ol { padding-left: 1.2rem; margin: 0.5rem 0; }
+  .platform li { font-size: 0.92rem; margin: 0.4rem 0; }
+  .faq details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+  }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .faq details[open] summary { margin-bottom: 0.6rem; }
+  .faq p { margin: 0.4rem 0; }
+  .diagram {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+  .diagram svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+  .diagram-caption { text-align: center; font-size: 0.88rem; color: var(--muted); margin-top: 0.75rem; }
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .why { font-style: italic; color: var(--muted); border-left: 3px solid var(--accent); padding: 0.5rem 0 0.5rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Personal Agent Kit</h1>
+  <p class="tagline">Build your personal AI second brain. No coding experience required.</p>
+  <p class="tagline-zh">建立你自己的 AI 第二大腦。不需要程式經驗。</p>
+  <div class="download-row">
+    <a class="download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">↓ Download Kit (ZIP)</a>
+    <span class="download-sub">Latest release · v0.1.0 · MIT License</span>
+  </div>
+</header>
+
+<section>
+  <h2>What is this? / 這是什麼？</h2>
+  <p>A folder of notes that an AI (Claude) reads, organizes, and learns from across conversations. Over time it remembers your preferences and gets better at helping you.</p>
+  <p class="zh">一個 AI（Claude）能讀取、整理、跨對話學習的筆記資料夾。時間久了它會記住你的偏好, 越來越懂你。</p>
+  <p>This kit teaches Claude how to set the system up <em>for</em> you. You don't read the technical files — you just talk to Claude.</p>
+  <p class="zh">這個 kit 是教 Claude 怎麼幫你建系統的。技術文件你不用讀 — 你只要跟 Claude 對話。</p>
+</section>
+
+<section>
+  <h2>What you need / 你需要準備</h2>
+  <ul>
+    <li>A computer (Mac, Windows, or Linux) <span class="zh">／ 電腦一台</span></li>
+    <li>Claude Max subscription (~$20/month) <span class="zh">／ Claude Max 訂閱（每月約 $20 美金）</span></li>
+    <li>About 30 minutes for first-time setup <span class="zh">／ 第一次設定大約 30 分鐘</span></li>
+  </ul>
+  <p>That's it. You don't need to know how to code.<br><span class="zh">就這樣。你不需要會寫程式。</span></p>
+</section>
+
+<section>
+  <h2>Setup — 3 steps / 設定 — 3 步驟</h2>
+
+  <div class="step">
+    <h3>Step 1 — Install Claude Code <span class="zh">／ 安裝 Claude Code</span></h3>
+    <p>Claude Code is the tool that lets you talk to Claude through your computer's command line.</p>
+    <p class="zh">Claude Code 是讓你透過電腦命令列跟 Claude 對話的工具。</p>
+    <div class="platforms">
+      <div class="platform">
+        <h4>🍎 Mac</h4>
+        <ol>
+          <li>Open the <strong>Terminal</strong> app (<code>Cmd+Space</code>, type "terminal", Enter).</li>
+          <li>Paste and run:<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
+          <li>Run <code>claude login</code>, follow prompts.</li>
+        </ol>
+      </div>
+      <div class="platform">
+        <h4>🪟 Windows</h4>
+        <ol>
+          <li>Install <strong>WSL</strong>: open PowerShell as Admin → <code>wsl --install</code> → restart.</li>
+          <li>Open <strong>WSL</strong> from Start menu.</li>
+          <li>Run:<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
+          <li>Run <code>claude login</code>, follow prompts.</li>
+        </ol>
+      </div>
+    </div>
+    <p style="margin-top:1rem"><strong>Test it works:</strong> run <code>claude --version</code>. If you see a version number, you're ready.</p>
+    <p class="zh">測試是否成功：執行 <code>claude --version</code>, 看到版本號就 OK。</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 2 — Open this folder in Claude Code <span class="zh">／ 在 Claude Code 裡打開這個資料夾</span></h3>
+    <ol>
+      <li>Unzip the kit and move the <code>personal-agent-kit</code> folder somewhere you'll remember (e.g., your <code>Documents</code> folder).<br><span class="zh">解壓縮 kit, 把 <code>personal-agent-kit</code> 資料夾搬到你記得住的位置（例如 <code>Documents</code>）。</span></li>
+      <li>In Terminal/WSL, type <code>cd </code> (with a space), <strong>drag the folder from Finder/File Explorer into Terminal</strong>, press Enter.<br><span class="zh">在 Terminal/WSL 裡輸入 <code>cd </code>（後面有空格）, <strong>從 Finder/檔案總管把資料夾拖進 Terminal</strong>, 按 Enter。</span></li>
+      <li>Run:<pre><code>claude</code></pre></li>
+    </ol>
+  </div>
+
+  <div class="step">
+    <h3>Step 3 — Tell Claude what to do <span class="zh">／ 告訴 Claude 要做什麼</span></h3>
+    <p>Once Claude Code is running, type this and press Enter:</p>
+    <pre><code>Read BOOTSTRAP.md and help me set up the system</code></pre>
+    <p class="zh">中文也可以：</p>
+    <pre><code>讀 BOOTSTRAP.md, 幫我建立系統</code></pre>
+    <p><strong>That's it.</strong> Claude takes over from here — it'll interview you for a few minutes, then build a system tailored to you.</p>
+    <p class="zh"><strong>就這樣。</strong> Claude 會接手, 訪談你幾分鐘, 然後建一個符合你的系統。</p>
+  </div>
+</section>
+
+<section>
+  <h2>How the system grows / 系統如何成長</h2>
+  <p>You start with the basics, and add more when you're ready. Most people never need to go beyond Stage 1.</p>
+  <p class="zh">從基礎開始, 準備好再加。大部分人不需要超出第一階段。</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System growth stages diagram">
+      <defs>
+        <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g style="color: var(--accent)">
+        <!-- Stage 1 -->
+        <rect x="20" y="60" width="200" height="200" rx="12" fill="none" stroke="currentColor" stroke-width="2"/>
+        <text x="120" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">Stage 1 — Basics</text>
+        <text x="120" y="92" text-anchor="middle" font-size="13" fill="currentColor">Day 1 / 第一天</text>
+        <text x="120" y="130" text-anchor="middle" font-size="13" fill="currentColor">📁 Knowledge folder</text>
+        <text x="120" y="155" text-anchor="middle" font-size="13" fill="currentColor">🧠 Memory</text>
+        <text x="120" y="180" text-anchor="middle" font-size="13" fill="currentColor">📜 Behavior rules</text>
+        <text x="120" y="225" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">Enough for daily use</text>
+        <text x="120" y="244" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">日常使用足夠</text>
+
+        <line x1="225" y1="160" x2="265" y2="160" stroke="currentColor" stroke-width="2" marker-end="url(#arr1)"/>
+
+        <!-- Stage 2 -->
+        <rect x="270" y="60" width="200" height="200" rx="12" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="370" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">Stage 2 — Extensions</text>
+        <text x="370" y="92" text-anchor="middle" font-size="13" fill="currentColor">Later, by request / 後續</text>
+        <text x="370" y="130" text-anchor="middle" font-size="13" fill="currentColor">📱 Phone capture</text>
+        <text x="370" y="155" text-anchor="middle" font-size="13" fill="currentColor">⏰ Scheduled automation</text>
+        <text x="370" y="180" text-anchor="middle" font-size="13" fill="currentColor">🗂️ Deeper memory</text>
+        <text x="370" y="205" text-anchor="middle" font-size="13" fill="currentColor">✓ Quality checks</text>
+        <text x="370" y="244" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">Claude suggests when ready</text>
+
+        <line x1="475" y1="160" x2="515" y2="160" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arr1)"/>
+
+        <!-- Stage 3 -->
+        <rect x="520" y="60" width="180" height="200" rx="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.5"/>
+        <text x="610" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor" opacity="0.6">Stage 3 — Advanced</text>
+        <text x="610" y="92" text-anchor="middle" font-size="13" fill="currentColor" opacity="0.6">Not in this kit</text>
+        <text x="610" y="108" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">不在這個 kit</text>
+        <text x="610" y="145" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">Sub-agent delegation</text>
+        <text x="610" y="170" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">Multi-bot ecosystem</text>
+        <text x="610" y="195" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">Self-modifying rules</text>
+      </g>
+    </svg>
+    <p class="diagram-caption">Three stages of system growth. Day 1 ships the basics; the rest comes later, only when you'd benefit. <span class="zh">／ 三階段成長, Day 1 出基礎, 其他後續視需要再加。</span></p>
+  </div>
+</section>
+
+<section>
+  <h2>What's inside / 裡面有什麼</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vault architecture diagram">
+      <g style="color: var(--accent)">
+        <!-- Outer vault container -->
+        <rect x="20" y="30" width="680" height="310" rx="14" fill="none" stroke="currentColor" stroke-width="2"/>
+        <text x="360" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Your Vault — a folder on your computer / 你電腦上的一個資料夾</text>
+
+        <!-- Knowledge folder -->
+        <rect x="50" y="85" width="180" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="140" y="110" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">📁 Notes</text>
+        <text x="140" y="135" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">knowledge/</text>
+        <text x="140" y="153" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">references/</text>
+        <text x="140" y="171" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">ideas/, inbox/</text>
+
+        <!-- Rules -->
+        <rect x="270" y="85" width="180" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="360" y="110" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">📜 Rules</text>
+        <text x="360" y="135" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">CLAUDE.md</text>
+        <text x="360" y="153" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">.claude/rules/</text>
+        <text x="360" y="171" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">how Claude behaves</text>
+
+        <!-- Memory -->
+        <rect x="490" y="85" width="180" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="580" y="110" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">🧠 Memory</text>
+        <text x="580" y="135" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">proven.md</text>
+        <text x="580" y="153" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">decisions.md</text>
+        <text x="580" y="171" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">what Claude learned</text>
+
+        <!-- Patterns (advanced) -->
+        <rect x="160" y="220" width="400" height="90" rx="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.7"/>
+        <text x="360" y="245" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor" opacity="0.8">🧩 Patterns (extensions, optional)</text>
+        <text x="360" y="268" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">phone-capture · scheduled-automation · deeper-memory</text>
+        <text x="360" y="288" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">added later, when Claude sees you'd benefit</text>
+
+        <!-- Connecting lines -->
+        <line x1="140" y1="185" x2="270" y2="265" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="360" y1="185" x2="360" y2="220" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="580" y1="185" x2="450" y2="265" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      </g>
+    </svg>
+    <p class="diagram-caption">Three core pieces (notes + rules + memory) on day 1, with patterns layered in later. <span class="zh">／ 第一天就是「筆記＋規則＋記憶」三件套, 後續再疊上 patterns。</span></p>
+  </div>
+</section>
+
+<section>
+  <h2>FAQ</h2>
+  <div class="faq">
+    <details>
+      <summary>Do I need to know how to code? <span class="zh">／ 我需要會寫程式嗎？</span></summary>
+      <p>No. If you can use a browser, files, and copy-paste, you can set this up. The kit is designed for people who installed Claude Code 30 minutes ago and don't know what "terminal" means.</p>
+      <p class="zh">不用。會用瀏覽器、檔案、複製貼上就可以。 這個 kit 是設計給「30 分鐘前才剛裝 Claude Code、還不知道 terminal 是什麼」的人用的。</p>
+    </details>
+    <details>
+      <summary>Is my data private? <span class="zh">／ 我的資料是私密的嗎？</span></summary>
+      <p>Yes. Everything lives in a folder on your computer. Nothing is uploaded anywhere except when Claude reads it during a conversation (same as any Claude chat). No cloud sync, no telemetry, no third party.</p>
+      <p class="zh">是。 所有東西都在你自己電腦上的資料夾裡。 除了對話時 Claude 讀取（跟一般 Claude 對話一樣）, 沒有上傳到任何地方。 沒有雲端同步、沒有遙測、沒有第三方。</p>
+    </details>
+    <details>
+      <summary>What does it cost? <span class="zh">／ 要花多少錢？</span></summary>
+      <p>The kit itself is free (MIT licensed). You need a Claude Max subscription (~$20/month) for unlimited Claude Code use. Optional tools like Obsidian and VS Code are free.</p>
+      <p class="zh">Kit 本身免費（MIT 授權）。 需要 Claude Max 訂閱（每月約 $20 美金）來不限量用 Claude Code。 推薦的 Obsidian、VS Code 都是免費。</p>
+    </details>
+    <details>
+      <summary>Can I uninstall? <span class="zh">／ 可以反悔不用嗎？</span></summary>
+      <p>Yes. Delete the folder. That's it — no system services, no background processes, no registry edits. Your notes are markdown files; you can keep them, open them anywhere, or throw them away.</p>
+      <p class="zh">可以。 刪掉那個資料夾就好。 沒有系統服務、沒有背景程式、沒有 registry 編輯。 你的筆記就是 markdown 檔, 可以留著、用任何工具打開, 或丟掉。</p>
+    </details>
+    <details>
+      <summary>How is this different from just using ChatGPT or Claude? <span class="zh">／ 跟直接用 ChatGPT 或 Claude 有什麼不同？</span></summary>
+      <p>Plain chat forgets everything between conversations. This kit gives Claude a persistent place to read and write — so it remembers your preferences, builds on past notes, and gets more useful over time. Same Claude, with continuity.</p>
+      <p class="zh">純對話每次都忘光。 這個 kit 給 Claude 一個能讀寫的固定位置 — 它會記住你的偏好、累積筆記、隨時間越來越有用。 同一個 Claude, 但有連續性。</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <h2>Why I built this / 為什麼做這個</h2>
+  <p class="why">I wanted an AI that remembered me — not one I had to re-introduce myself to every morning. So I built a vault, taught Claude how to maintain it, and after months of using it daily, packaged what works into this kit. <span class="zh">— Jie</span></p>
+  <p style="font-size: 0.85rem; color: var(--muted); text-align: center;"><em>(placeholder — Jie will edit)</em></p>
+</section>
+
+<footer>
+  <p>
+    <a href="https://github.com/jieliou/personal-agent-kit">Source on GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/jieliou/personal-agent-kit/releases">Releases</a>
+    &nbsp;·&nbsp;
+    <a href="https://jieliou.com">Jie Liou</a>
+  </p>
+  <p style="font-size: 0.8rem; opacity: 0.7;">MIT License · Built with care, no tracking, no analytics.</p>
+</footer>
+
+</div>
+</body>
+</html>
