@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant" class="lang-zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Agent Kit — Build your AI second brain</title>
-<meta name="description" content="Build your personal AI second brain. No coding experience required. 建立你自己的 AI 第二大腦。">
+<title>Personal Agent Kit — 建立你自己的 AI 第二大腦</title>
+<meta name="description" content="建立你自己的 AI 第二大腦, 不需要程式經驗。 Build your personal AI second brain. No coding experience required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +27,7 @@
     --accent-indigo: #818cf8;
     --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans CJK TC", system-ui, sans-serif;
+    --header-h: 55px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -37,16 +38,104 @@
     color: var(--fg);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    padding-top: var(--header-h);
   }
   .wrap { max-width: 920px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+  /* ===== Language switching ===== */
+  html.lang-zh .lang-en-only { display: none !important; }
+  html.lang-en .lang-zh-only { display: none !important; }
+
+  /* ===== Fixed Site Header ===== */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+  .site-header .brand {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    color: var(--fg-strong);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .site-header .brand .dot {
+    color: var(--accent-purple);
+    font-size: 0.9rem;
+  }
+  .site-header .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .site-header .header-download {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    background: var(--accent-orange);
+    color: #000;
+    padding: 0.45rem 0.95rem;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--accent-orange);
+    transition: background 0.15s;
+  }
+  .site-header .header-download:hover { background: #fb923c; }
+  .lang-toggle {
+    display: inline-flex;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--border-strong);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 0.42rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition: color 0.1s, background 0.1s;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle button.active {
+    color: var(--fg-strong);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .lang-toggle button:hover:not(.active) {
+    color: var(--fg);
+  }
+  @media (max-width: 640px) {
+    :root { --header-h: 48px; }
+    .site-header { padding: 0 1rem; }
+    .site-header .brand { font-size: 0.76rem; }
+    .site-header .brand .brand-full { display: none; }
+    .site-header .header-download { padding: 0.35rem 0.7rem; font-size: 0.7rem; }
+    .lang-toggle button { padding: 0.34rem 0.55rem; font-size: 0.7rem; }
+  }
 
   /* ===== Mono used for headings + labels (the dashboard idiom) ===== */
   h1, h2, h3, .mono, code, pre, .label, .tag {
     font-family: var(--font-mono);
   }
 
-  /* ===== Header ===== */
-  header { text-align: center; margin-bottom: 5rem; }
+  /* ===== Hero ===== */
+  header.hero { text-align: center; margin-bottom: 5rem; }
   .hero-tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -59,26 +148,32 @@
     border-radius: 2px;
   }
   h1 {
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    margin: 0 0 1rem;
+    font-size: clamp(1.9rem, 5vw, 2.65rem);
+    margin: 0 0 0.6rem;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.15;
     color: var(--fg-strong);
     font-weight: 600;
   }
+  h1 .h1-en {
+    display: block;
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    letter-spacing: -0.01em;
+  }
   .tagline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--fg);
-    margin: 0 0 0.4rem;
+    margin: 1rem auto 0.4rem;
     font-family: var(--font-sans);
     max-width: 36rem;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .tagline-zh {
-    font-size: 1rem;
+  .tagline-en {
+    font-size: 0.95rem;
     color: var(--muted);
-    margin: 0 auto 2.75rem;
+    margin: 0 auto 2.5rem;
     font-family: var(--font-sans);
     max-width: 36rem;
   }
@@ -117,7 +212,7 @@
     margin: 0 0 2rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--fg-strong);
     font-weight: 500;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border);
@@ -125,6 +220,11 @@
   h2 .glyph {
     color: var(--accent-purple);
     margin-right: 0.5rem;
+  }
+  h2 .h2-en {
+    color: var(--muted-2);
+    margin-left: 0.5rem;
+    font-weight: 400;
   }
   h3 {
     font-size: 0.95rem;
@@ -137,10 +237,9 @@
     font-size: 0.98rem;
     color: var(--fg);
   }
-  .zh {
+  p.en, li.en, .en {
     color: var(--muted);
     font-size: 0.92rem;
-    display: inline-block;
   }
   ul { padding-left: 1.4rem; }
   ul li { margin: 0.4rem 0; }
@@ -256,6 +355,14 @@
     color: var(--fg-strong);
     font-weight: 600;
   }
+  .stage-card .stage-title-en {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted-2);
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
   .stage-card .stage-sub {
     font-family: var(--font-sans);
     font-size: 0.85rem;
@@ -284,6 +391,12 @@
   .stage-card.s2 ul li::before { color: var(--accent-cyan); }
   .stage-card.s3 { opacity: 0.6; border-style: dashed; }
   .stage-card.s3 ul li::before { color: var(--muted-3); }
+  .stage-foot {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
 
   /* ===== Architecture cards (replacing second SVG) ===== */
   .arch {
@@ -312,8 +425,15 @@
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--fg-strong);
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.2rem;
     letter-spacing: 0.02em;
+  }
+  .arch-card .arch-title-en {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted-2);
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.04em;
   }
   .arch-card .arch-files {
     font-family: var(--font-mono);
@@ -324,10 +444,11 @@
   .arch-card .arch-note {
     font-family: var(--font-sans);
     font-size: 0.82rem;
-    color: var(--muted);
+    color: var(--fg);
     margin: 0.6rem 0 0;
     line-height: 1.5;
   }
+  .arch-card .arch-note.en { color: var(--muted); }
   .arch-extends {
     text-align: center;
     font-family: var(--font-mono);
@@ -372,17 +493,19 @@
   .faq details[open] summary::before { content: "−"; }
   .faq details[open] summary { margin-bottom: 0.6rem; }
   .faq p { margin: 0.4rem 0; font-size: 0.92rem; }
+  .faq p.en { color: var(--muted); }
 
   /* ===== Why ===== */
   .why {
     font-family: var(--font-sans);
     font-style: italic;
-    color: var(--muted);
+    color: var(--fg);
     border-left: 2px solid var(--accent-orange);
     padding: 0.5rem 0 0.5rem 1.1rem;
     margin: 1rem 0;
     line-height: 1.7;
   }
+  .why.en { color: var(--muted); }
   .placeholder-note {
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -421,43 +544,101 @@
 
   /* ===== Lead text under section heading ===== */
   .lead { margin: 0 0 1rem; }
-  .lead-zh { margin: 0 0 1.5rem; }
+  .lead.en { margin: 0 0 1.5rem; }
 </style>
+<script>
+  (function() {
+    var stored = null;
+    try { stored = localStorage.getItem('lang'); } catch(e) {}
+    var lang = (stored === 'en' || stored === 'zh') ? stored : 'zh';
+    var html = document.documentElement;
+    html.classList.remove('lang-zh', 'lang-en');
+    html.classList.add('lang-' + lang);
+    html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+  })();
+</script>
 </head>
 <body>
-<div class="wrap">
 
-<header>
+<div class="site-header">
+  <a class="brand" href="#top">
+    <span class="dot">◉</span>
+    <span class="brand-full lang-zh-only">Personal Agent Kit</span>
+    <span class="brand-full lang-en-only">Personal Agent Kit</span>
+  </a>
+  <div class="actions">
+    <a class="header-download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">
+      <span class="lang-zh-only">↓ 下載</span>
+      <span class="lang-en-only">↓ Download</span>
+    </a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="zh">ZH</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" id="top">
+
+<header class="hero">
   <span class="hero-tag">◉ Personal Agent Kit · v0.1.0</span>
-  <h1>Your AI, with continuity.</h1>
-  <p class="tagline">Build your personal AI second brain. No coding experience required.</p>
-  <p class="tagline-zh">建立你自己的 AI 第二大腦。不需要程式經驗。</p>
+  <h1>
+    <span class="lang-zh-only">給你的 AI 一段連續性。</span>
+    <span class="lang-en-only">Your AI, with continuity.</span>
+    <span class="h1-en lang-zh-only">Your AI, with continuity.</span>
+    <span class="h1-en lang-en-only">給你的 AI 一段連續性。</span>
+  </h1>
+  <p class="tagline lang-zh-only">建立你自己的 AI 第二大腦。 不需要程式經驗。</p>
+  <p class="tagline lang-en-only">Build your personal AI second brain. No coding experience required.</p>
+  <p class="tagline-en lang-zh-only">Build your personal AI second brain. No coding experience required.</p>
+  <p class="tagline-en lang-en-only">建立你自己的 AI 第二大腦。 不需要程式經驗。</p>
   <div class="download-row">
-    <a class="download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">↓ Download Kit (ZIP)</a>
+    <a class="download" href="https://github.com/jieliou/personal-agent-kit/releases/latest/download/personal-agent-kit.zip">
+      <span class="lang-zh-only">↓ 下載 Kit (ZIP)</span>
+      <span class="lang-en-only">↓ Download Kit (ZIP)</span>
+    </a>
     <span class="download-sub">Latest · v0.1.0 · MIT License</span>
   </div>
 </header>
 
 <section>
-  <h2><span class="glyph">◇</span>What is this <span class="zh">／ 這是什麼？</span></h2>
-  <p>A folder of notes that an AI (Claude) reads, organizes, and learns from across conversations. Over time it remembers your preferences and gets better at helping you.</p>
-  <p class="zh">一個 AI（Claude）能讀取、整理、跨對話學習的筆記資料夾。時間久了它會記住你的偏好, 越來越懂你。</p>
-  <p>This kit teaches Claude how to set the system up <em>for</em> you. You don't read the technical files — you just talk to Claude.</p>
-  <p class="zh">這個 kit 是教 Claude 怎麼幫你建系統的。技術文件你不用讀 — 你只要跟 Claude 對話。</p>
+  <h2>
+    <span class="glyph">◇</span>
+    <span class="lang-zh-only">這是什麼？<span class="h2-en">／ What is this</span></span>
+    <span class="lang-en-only">What is this<span class="h2-en">／ 這是什麼？</span></span>
+  </h2>
+  <p class="lang-zh-only">一個 AI（Claude）能讀取、整理、跨對話學習的筆記資料夾。 時間久了它會記住你的偏好, 越來越懂你。</p>
+  <p class="lang-en-only">A folder of notes that an AI (Claude) reads, organizes, and learns from across conversations. Over time it remembers your preferences and gets better at helping you.</p>
+  <p class="lang-zh-only">這個 kit 是教 Claude 怎麼幫你建系統的。 技術文件你不用讀, 你只要跟 Claude 對話。</p>
+  <p class="lang-en-only">This kit teaches Claude how to set the system up <em>for</em> you. You don't read the technical files — you just talk to Claude.</p>
 </section>
 
 <section>
-  <h2><span class="glyph">◎</span>What you need <span class="zh">／ 你需要準備</span></h2>
-  <ul>
-    <li>A computer (Mac, Windows, or Linux) <span class="zh">／ 電腦一台</span></li>
-    <li>Claude Max subscription (~$20/month) <span class="zh">／ Claude Max 訂閱（每月約 $20 美金）</span></li>
-    <li>About 30 minutes for first-time setup <span class="zh">／ 第一次設定大約 30 分鐘</span></li>
+  <h2>
+    <span class="glyph">◎</span>
+    <span class="lang-zh-only">你需要準備<span class="h2-en">／ What you need</span></span>
+    <span class="lang-en-only">What you need<span class="h2-en">／ 你需要準備</span></span>
+  </h2>
+  <ul class="lang-zh-only">
+    <li>一台電腦（Mac、Windows 或 Linux）</li>
+    <li>Claude Max 訂閱（每月約 $20 美金）</li>
+    <li>第一次設定大約 30 分鐘</li>
   </ul>
-  <p>That's it. You don't need to know how to code.<br><span class="zh">就這樣。你不需要會寫程式。</span></p>
+  <ul class="lang-en-only">
+    <li>A computer (Mac, Windows, or Linux)</li>
+    <li>Claude Max subscription (~$20/month)</li>
+    <li>About 30 minutes for first-time setup</li>
+  </ul>
+  <p class="lang-zh-only">就這樣。 你不需要會寫程式。</p>
+  <p class="lang-en-only">That's it. You don't need to know how to code.</p>
 </section>
 
 <section>
-  <h2><span class="glyph">▣</span>Setup — 3 steps <span class="zh">／ 設定 — 3 步驟</span></h2>
+  <h2>
+    <span class="glyph">▣</span>
+    <span class="lang-zh-only">設定 — 3 步驟<span class="h2-en">／ Setup — 3 steps</span></span>
+    <span class="lang-en-only">Setup — 3 steps<span class="h2-en">／ 設定 — 3 步驟</span></span>
+  </h2>
 
   <div class="step">
     <div class="card">
@@ -466,12 +647,17 @@
         <span class="tag cyan">Install Claude Code</span>
       </div>
       <div class="card-body">
-        <p>Claude Code is the tool that lets you talk to Claude through your computer's command line.</p>
-        <p class="zh">Claude Code 是讓你透過電腦命令列跟 Claude 對話的工具。</p>
+        <p class="lang-zh-only">Claude Code 是讓你透過電腦命令列跟 Claude 對話的工具。</p>
+        <p class="lang-en-only">Claude Code is the tool that lets you talk to Claude through your computer's command line.</p>
         <div class="platforms">
           <div class="platform">
             <p class="platform-head">[ Mac ]</p>
-            <ol>
+            <ol class="lang-zh-only">
+              <li>開啟 <strong>Terminal</strong> 應用程式（按 <code>Cmd+Space</code>, 輸入「terminal」, 按 Enter）。</li>
+              <li>貼上並執行：<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
+              <li>執行 <code>claude login</code>, 跟著畫面提示完成登入。</li>
+            </ol>
+            <ol class="lang-en-only">
               <li>Open the <strong>Terminal</strong> app (<code>Cmd+Space</code>, type "terminal", Enter).</li>
               <li>Paste and run:<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
               <li>Run <code>claude login</code>, follow prompts.</li>
@@ -479,7 +665,13 @@
           </div>
           <div class="platform">
             <p class="platform-head">[ Windows ]</p>
-            <ol>
+            <ol class="lang-zh-only">
+              <li>安裝 <strong>WSL</strong>：以系統管理員身分開啟 PowerShell → 執行 <code>wsl --install</code> → 重新開機。</li>
+              <li>從開始選單開啟 <strong>WSL</strong>。</li>
+              <li>執行：<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
+              <li>執行 <code>claude login</code>, 跟著畫面提示完成登入。</li>
+            </ol>
+            <ol class="lang-en-only">
               <li>Install <strong>WSL</strong>: open PowerShell as Admin → <code>wsl --install</code> → restart.</li>
               <li>Open <strong>WSL</strong> from Start menu.</li>
               <li>Run:<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></li>
@@ -487,8 +679,8 @@
             </ol>
           </div>
         </div>
-        <p style="margin-top:1rem"><strong>Test it works:</strong> run <code>claude --version</code>. If you see a version number, you're ready.</p>
-        <p class="zh">測試是否成功：執行 <code>claude --version</code>, 看到版本號就 OK。</p>
+        <p style="margin-top:1rem" class="lang-zh-only"><strong>測試是否成功：</strong>執行 <code>claude --version</code>, 看到版本號就 OK。</p>
+        <p style="margin-top:1rem" class="lang-en-only"><strong>Test it works:</strong> run <code>claude --version</code>. If you see a version number, you're ready.</p>
       </div>
     </div>
   </div>
@@ -500,9 +692,14 @@
         <span class="tag cyan">Open the folder</span>
       </div>
       <div class="card-body">
-        <ol>
-          <li>Unzip the kit and move the <code>personal-agent-kit</code> folder somewhere you'll remember (e.g., your <code>Documents</code> folder).<br><span class="zh">解壓縮 kit, 把 <code>personal-agent-kit</code> 資料夾搬到你記得住的位置（例如 <code>Documents</code>）。</span></li>
-          <li>In Terminal/WSL, type <code>cd </code> (with a space), <strong>drag the folder from Finder/File Explorer into Terminal</strong>, press Enter.<br><span class="zh">在 Terminal/WSL 裡輸入 <code>cd </code>（後面有空格）, <strong>從 Finder/檔案總管把資料夾拖進 Terminal</strong>, 按 Enter。</span></li>
+        <ol class="lang-zh-only">
+          <li>解壓縮 kit, 把 <code>personal-agent-kit</code> 資料夾搬到你記得住的位置（例如 <code>Documents</code>）。</li>
+          <li>在 Terminal/WSL 裡輸入 <code>cd </code>（後面有一個空格）, <strong>從 Finder 或檔案總管把資料夾拖進 Terminal</strong>, 按 Enter。</li>
+          <li>執行：<pre><code>claude</code></pre></li>
+        </ol>
+        <ol class="lang-en-only">
+          <li>Unzip the kit and move the <code>personal-agent-kit</code> folder somewhere you'll remember (e.g., your <code>Documents</code> folder).</li>
+          <li>In Terminal/WSL, type <code>cd </code> (with a space), <strong>drag the folder from Finder/File Explorer into Terminal</strong>, press Enter.</li>
           <li>Run:<pre><code>claude</code></pre></li>
         </ol>
       </div>
@@ -516,132 +713,214 @@
         <span class="tag orange">Tell Claude what to do</span>
       </div>
       <div class="card-body">
-        <p>Once Claude Code is running, type this and press Enter:</p>
-        <pre><code>Read BOOTSTRAP.md and help me set up the system</code></pre>
-        <p class="zh">中文也可以：</p>
-        <pre><code>讀 BOOTSTRAP.md, 幫我建立系統</code></pre>
-        <p><strong>That's it.</strong> Claude takes over from here — it'll interview you for a few minutes, then build a system tailored to you.</p>
-        <p class="zh"><strong>就這樣。</strong> Claude 會接手, 訪談你幾分鐘, 然後建一個符合你的系統。</p>
+        <p class="lang-zh-only">Claude Code 啟動後, 輸入這行然後按 Enter：</p>
+        <p class="lang-en-only">Once Claude Code is running, type this and press Enter:</p>
+        <pre class="lang-zh-only"><code>讀 BOOTSTRAP.md, 幫我建立系統</code></pre>
+        <pre class="lang-en-only"><code>Read BOOTSTRAP.md and help me set up the system</code></pre>
+        <p class="lang-zh-only">英文也可以：<code>Read BOOTSTRAP.md and help me set up the system</code></p>
+        <p class="lang-en-only">Chinese works too: <code>讀 BOOTSTRAP.md, 幫我建立系統</code></p>
+        <p class="lang-zh-only"><strong>就這樣。</strong> Claude 會接手, 訪談你幾分鐘, 然後建一個符合你的系統。</p>
+        <p class="lang-en-only"><strong>That's it.</strong> Claude takes over from here — it'll interview you for a few minutes, then build a system tailored to you.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section>
-  <h2><span class="glyph">△</span>How the system grows <span class="zh">／ 系統如何成長</span></h2>
-  <p class="lead">You start with the basics, and add more when you're ready. Most people never need to go beyond Stage 1.</p>
-  <p class="lead-zh zh">從基礎開始, 準備好再加。大部分人不需要超出第一階段。</p>
+  <h2>
+    <span class="glyph">△</span>
+    <span class="lang-zh-only">系統如何成長<span class="h2-en">／ How the system grows</span></span>
+    <span class="lang-en-only">How the system grows<span class="h2-en">／ 系統如何成長</span></span>
+  </h2>
+  <p class="lead lang-zh-only">從基礎開始, 準備好再加。 大部分人不需要超出第一階段。</p>
+  <p class="lead lang-en-only">You start with the basics, and add more when you're ready. Most people never need to go beyond Stage 1.</p>
 
   <div class="stages">
     <div class="card stage-card s1">
       <p class="stage-num">Stage 1</p>
-      <p class="stage-title">Basics</p>
-      <p class="stage-sub">Day 1 / 第一天</p>
-      <ul>
+      <p class="stage-title lang-zh-only">基礎</p>
+      <p class="stage-title lang-en-only">Basics</p>
+      <p class="stage-title-en lang-zh-only">Basics</p>
+      <p class="stage-title-en lang-en-only">基礎</p>
+      <p class="stage-sub lang-zh-only">第一天</p>
+      <p class="stage-sub lang-en-only">Day 1</p>
+      <ul class="lang-zh-only">
+        <li>知識資料夾</li>
+        <li>跨對話的記憶</li>
+        <li>行為規則</li>
+      </ul>
+      <ul class="lang-en-only">
         <li>Knowledge folder</li>
         <li>Memory across sessions</li>
         <li>Behavior rules</li>
       </ul>
-      <p class="stage-sub" style="margin-top: 1rem; font-size: 0.78rem;">Enough for daily use<br>日常使用足夠</p>
+      <p class="stage-foot lang-zh-only">日常使用足夠</p>
+      <p class="stage-foot lang-en-only">Enough for daily use</p>
     </div>
     <div class="card stage-card s2">
       <p class="stage-num">Stage 2</p>
-      <p class="stage-title">Extensions</p>
-      <p class="stage-sub">Later, by request / 後續</p>
-      <ul>
+      <p class="stage-title lang-zh-only">延伸</p>
+      <p class="stage-title lang-en-only">Extensions</p>
+      <p class="stage-title-en lang-zh-only">Extensions</p>
+      <p class="stage-title-en lang-en-only">延伸</p>
+      <p class="stage-sub lang-zh-only">後續, 視需要再加</p>
+      <p class="stage-sub lang-en-only">Later, by request</p>
+      <ul class="lang-zh-only">
+        <li>手機輸入（Discord/Slack）</li>
+        <li>排程自動化</li>
+        <li>更深的記憶</li>
+        <li>品質檢查</li>
+      </ul>
+      <ul class="lang-en-only">
         <li>Phone capture (Discord/Slack)</li>
         <li>Scheduled automation</li>
         <li>Deeper memory</li>
         <li>Quality checks</li>
       </ul>
-      <p class="stage-sub" style="margin-top: 1rem; font-size: 0.78rem;">Claude suggests when ready<br>時機到 Claude 會建議</p>
+      <p class="stage-foot lang-zh-only">時機到了 Claude 會建議</p>
+      <p class="stage-foot lang-en-only">Claude suggests when ready</p>
     </div>
     <div class="card stage-card s3">
       <p class="stage-num">Stage 3</p>
-      <p class="stage-title">Advanced</p>
-      <p class="stage-sub">Not in this kit / 不在這個 kit</p>
-      <ul>
+      <p class="stage-title lang-zh-only">進階</p>
+      <p class="stage-title lang-en-only">Advanced</p>
+      <p class="stage-title-en lang-zh-only">Advanced</p>
+      <p class="stage-title-en lang-en-only">進階</p>
+      <p class="stage-sub lang-zh-only">不在這個 kit 裡</p>
+      <p class="stage-sub lang-en-only">Not in this kit</p>
+      <ul class="lang-zh-only">
+        <li>子代理委派</li>
+        <li>多機器人協作</li>
+        <li>自我修改規則</li>
+      </ul>
+      <ul class="lang-en-only">
         <li>Sub-agent delegation</li>
         <li>Multi-bot ecosystem</li>
         <li>Self-modifying rules</li>
       </ul>
-      <p class="stage-sub" style="margin-top: 1rem; font-size: 0.78rem;">For when you outgrow the kit<br>用到超出 kit 範圍時</p>
+      <p class="stage-foot lang-zh-only">用到超出 kit 範圍時再說</p>
+      <p class="stage-foot lang-en-only">For when you outgrow the kit</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2><span class="glyph">▤</span>What's inside <span class="zh">／ 裡面有什麼</span></h2>
-  <p class="lead">Three core pieces on day 1, with patterns layered in later.</p>
-  <p class="lead-zh zh">第一天就是「筆記＋規則＋記憶」三件套, 後續再疊上 patterns。</p>
+  <h2>
+    <span class="glyph">▤</span>
+    <span class="lang-zh-only">裡面有什麼<span class="h2-en">／ What's inside</span></span>
+    <span class="lang-en-only">What's inside<span class="h2-en">／ 裡面有什麼</span></span>
+  </h2>
+  <p class="lead lang-zh-only">第一天就是「筆記＋規則＋記憶」三件套, 後續再疊上 patterns。</p>
+  <p class="lead lang-en-only">Three core pieces on day 1, with patterns layered in later.</p>
 
   <div class="arch core">
     <div class="card arch-card notes">
       <span class="arch-glyph">◇</span>
-      <p class="arch-title">Notes</p>
+      <p class="arch-title lang-zh-only">筆記</p>
+      <p class="arch-title lang-en-only">Notes</p>
+      <p class="arch-title-en lang-zh-only">Notes</p>
+      <p class="arch-title-en lang-en-only">筆記</p>
       <p class="arch-files">knowledge/<br>references/<br>ideas/, inbox/</p>
-      <p class="arch-note">Where Claude reads and writes for you. <span class="zh">Claude 為你讀寫的地方。</span></p>
+      <p class="arch-note lang-zh-only">Claude 為你讀寫的地方。</p>
+      <p class="arch-note lang-en-only">Where Claude reads and writes for you.</p>
     </div>
     <div class="card arch-card rules">
       <span class="arch-glyph">□</span>
-      <p class="arch-title">Rules</p>
+      <p class="arch-title lang-zh-only">規則</p>
+      <p class="arch-title lang-en-only">Rules</p>
+      <p class="arch-title-en lang-zh-only">Rules</p>
+      <p class="arch-title-en lang-en-only">規則</p>
       <p class="arch-files">CLAUDE.md<br>.claude/rules/</p>
-      <p class="arch-note">How Claude behaves with you specifically. <span class="zh">Claude 跟你互動的方式。</span></p>
+      <p class="arch-note lang-zh-only">Claude 跟你互動的方式。</p>
+      <p class="arch-note lang-en-only">How Claude behaves with you specifically.</p>
     </div>
     <div class="card arch-card memory">
       <span class="arch-glyph">◉</span>
-      <p class="arch-title">Memory</p>
+      <p class="arch-title lang-zh-only">記憶</p>
+      <p class="arch-title lang-en-only">Memory</p>
+      <p class="arch-title-en lang-zh-only">Memory</p>
+      <p class="arch-title-en lang-en-only">記憶</p>
       <p class="arch-files">proven.md<br>decisions.md</p>
-      <p class="arch-note">What Claude has learned over time. <span class="zh">Claude 累積學會的東西。</span></p>
+      <p class="arch-note lang-zh-only">Claude 累積學會的東西。</p>
+      <p class="arch-note lang-en-only">What Claude has learned over time.</p>
     </div>
   </div>
 
-  <p class="arch-extends">↓ Extends with</p>
+  <p class="arch-extends">
+    <span class="lang-zh-only">↓ 後續延伸</span>
+    <span class="lang-en-only">↓ Extends with</span>
+  </p>
 
   <div class="arch">
     <div class="card arch-card patterns">
       <span class="arch-glyph">▲</span>
-      <p class="arch-title">Patterns (Stage 2 extensions, optional)</p>
+      <p class="arch-title lang-zh-only">Patterns（Stage 2 延伸, 可選）</p>
+      <p class="arch-title lang-en-only">Patterns (Stage 2 extensions, optional)</p>
       <p class="arch-files">patterns/communication/ · patterns/automation/ · patterns/memory/</p>
-      <p class="arch-note">Phone capture · scheduled automation · deeper memory · quality checks. Added later, only when Claude sees you'd benefit. <span class="zh">手機輸入、排程自動化、更深記憶、品質檢查。 後續視需要再加, 由 Claude 建議。</span></p>
+      <p class="arch-note lang-zh-only">手機輸入、排程自動化、更深記憶、品質檢查。 後續視需要再加, 由 Claude 建議。</p>
+      <p class="arch-note lang-en-only">Phone capture · scheduled automation · deeper memory · quality checks. Added later, only when Claude sees you'd benefit.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2><span class="glyph">⬥</span>FAQ</h2>
+  <h2>
+    <span class="glyph">⬥</span>
+    <span class="lang-zh-only">FAQ<span class="h2-en">／ FAQ</span></span>
+    <span class="lang-en-only">FAQ</span>
+  </h2>
   <div class="faq">
     <details>
-      <summary>Do I need to know how to code? <span class="zh">／ 我需要會寫程式嗎？</span></summary>
-      <p>No. If you can use a browser, files, and copy-paste, you can set this up. The kit is designed for people who installed Claude Code 30 minutes ago and don't know what "terminal" means.</p>
-      <p class="zh">不用。會用瀏覽器、檔案、複製貼上就可以。 這個 kit 是設計給「30 分鐘前才剛裝 Claude Code、還不知道 terminal 是什麼」的人用的。</p>
+      <summary>
+        <span class="lang-zh-only">我需要會寫程式嗎？</span>
+        <span class="lang-en-only">Do I need to know how to code?</span>
+      </summary>
+      <p class="lang-zh-only">不用。 會用瀏覽器、檔案、複製貼上就可以。 這個 kit 是設計給「30 分鐘前才剛裝 Claude Code、還不知道 terminal 是什麼」的人用的。</p>
+      <p class="lang-en-only">No. If you can use a browser, files, and copy-paste, you can set this up. The kit is designed for people who installed Claude Code 30 minutes ago and don't know what "terminal" means.</p>
     </details>
     <details>
-      <summary>Is my data private? <span class="zh">／ 我的資料是私密的嗎？</span></summary>
-      <p>Yes. Everything lives in a folder on your computer. Nothing is uploaded anywhere except when Claude reads it during a conversation (same as any Claude chat). No cloud sync, no telemetry, no third party.</p>
-      <p class="zh">是。 所有東西都在你自己電腦上的資料夾裡。 除了對話時 Claude 讀取（跟一般 Claude 對話一樣）, 沒有上傳到任何地方。 沒有雲端同步、沒有遙測、沒有第三方。</p>
+      <summary>
+        <span class="lang-zh-only">我的資料是私密的嗎？</span>
+        <span class="lang-en-only">Is my data private?</span>
+      </summary>
+      <p class="lang-zh-only">是。 所有東西都在你自己電腦上的資料夾裡。 除了對話時 Claude 讀取（跟一般 Claude 對話一樣）, 沒有上傳到任何地方。 沒有雲端同步、沒有遙測、沒有第三方。</p>
+      <p class="lang-en-only">Yes. Everything lives in a folder on your computer. Nothing is uploaded anywhere except when Claude reads it during a conversation (same as any Claude chat). No cloud sync, no telemetry, no third party.</p>
     </details>
     <details>
-      <summary>What does it cost? <span class="zh">／ 要花多少錢？</span></summary>
-      <p>The kit itself is free (MIT licensed). You need a Claude Max subscription (~$20/month) for unlimited Claude Code use. Optional tools like Obsidian and VS Code are free.</p>
-      <p class="zh">Kit 本身免費（MIT 授權）。 需要 Claude Max 訂閱（每月約 $20 美金）來不限量用 Claude Code。 推薦的 Obsidian、VS Code 都是免費。</p>
+      <summary>
+        <span class="lang-zh-only">要花多少錢？</span>
+        <span class="lang-en-only">What does it cost?</span>
+      </summary>
+      <p class="lang-zh-only">Kit 本身免費（MIT License）。 需要 Claude Max 訂閱（每月約 $20 美金）來不限量使用 Claude Code。 推薦的 Obsidian、VS Code 都免費。</p>
+      <p class="lang-en-only">The kit itself is free (MIT licensed). You need a Claude Max subscription (~$20/month) for unlimited Claude Code use. Optional tools like Obsidian and VS Code are free.</p>
     </details>
     <details>
-      <summary>Can I uninstall? <span class="zh">／ 可以反悔不用嗎？</span></summary>
-      <p>Yes. Delete the folder. That's it — no system services, no background processes, no registry edits. Your notes are markdown files; you can keep them, open them anywhere, or throw them away.</p>
-      <p class="zh">可以。 刪掉那個資料夾就好。 沒有系統服務、沒有背景程式、沒有 registry 編輯。 你的筆記就是 markdown 檔, 可以留著、用任何工具打開, 或丟掉。</p>
+      <summary>
+        <span class="lang-zh-only">可以反悔不用嗎？</span>
+        <span class="lang-en-only">Can I uninstall?</span>
+      </summary>
+      <p class="lang-zh-only">可以。 刪掉那個資料夾就好。 沒有系統服務、沒有背景程式、沒有 registry 編輯。 你的筆記就是 markdown 檔, 可以留著、用任何工具打開, 或丟掉。</p>
+      <p class="lang-en-only">Yes. Delete the folder. That's it — no system services, no background processes, no registry edits. Your notes are markdown files; you can keep them, open them anywhere, or throw them away.</p>
     </details>
     <details>
-      <summary>How is this different from just using ChatGPT or Claude? <span class="zh">／ 跟直接用 ChatGPT 或 Claude 有什麼不同？</span></summary>
-      <p>Plain chat forgets everything between conversations. This kit gives Claude a persistent place to read and write — so it remembers your preferences, builds on past notes, and gets more useful over time. Same Claude, with continuity.</p>
-      <p class="zh">純對話每次都忘光。 這個 kit 給 Claude 一個能讀寫的固定位置 — 它會記住你的偏好、累積筆記、隨時間越來越有用。 同一個 Claude, 但有連續性。</p>
+      <summary>
+        <span class="lang-zh-only">跟直接用 ChatGPT 或 Claude 有什麼不同？</span>
+        <span class="lang-en-only">How is this different from just using ChatGPT or Claude?</span>
+      </summary>
+      <p class="lang-zh-only">純對話每次都忘光。 這個 kit 給 Claude 一個能讀寫的固定位置, 它會記住你的偏好、累積筆記、隨時間越來越有用。 同一個 Claude, 但有連續性。</p>
+      <p class="lang-en-only">Plain chat forgets everything between conversations. This kit gives Claude a persistent place to read and write — so it remembers your preferences, builds on past notes, and gets more useful over time. Same Claude, with continuity.</p>
     </details>
   </div>
 </section>
 
 <section>
-  <h2><span class="glyph">+</span>Why I built this <span class="zh">／ 為什麼做這個</span></h2>
-  <p class="why">I wanted an AI that remembered me — not one I had to re-introduce myself to every morning. So I built a vault, taught Claude how to maintain it, and after months of using it daily, packaged what works into this kit. <span class="zh">— Jie</span></p>
+  <h2>
+    <span class="glyph">+</span>
+    <span class="lang-zh-only">為什麼做這個<span class="h2-en">／ Why I built this</span></span>
+    <span class="lang-en-only">Why I built this<span class="h2-en">／ 為什麼做這個</span></span>
+  </h2>
+  <p class="why lang-zh-only">我想要一個「會記得我」的 AI, 不是每天早上都要重新自我介紹一次的那種。 所以我自己建了一個 vault, 教 Claude 怎麼維護它。 用了幾個月之後, 把可行的部分整理成這個 kit。 — Jie</p>
+  <p class="why lang-en-only">I wanted an AI that remembered me — not one I had to re-introduce myself to every morning. So I built a vault, taught Claude how to maintain it, and after months of using it daily, packaged what works into this kit. — Jie</p>
   <p class="placeholder-note">// placeholder — Jie will edit</p>
 </section>
 
@@ -657,5 +936,28 @@
 </footer>
 
 </div>
+
+<script>
+  (function() {
+    function setLang(lang) {
+      var html = document.documentElement;
+      html.classList.remove('lang-zh', 'lang-en');
+      html.classList.add('lang-' + lang);
+      html.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+      document.querySelectorAll('.lang-toggle button').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      try { localStorage.setItem('lang', lang); } catch(e) {}
+    }
+    var stored = null;
+    try { stored = localStorage.getItem('lang'); } catch(e) {}
+    var initial = (stored === 'en' || stored === 'zh') ? stored : 'zh';
+    setLang(initial);
+    document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+      btn.addEventListener('click', function() { setLang(this.dataset.lang); });
+    });
+  })();
+</script>
+
 </body>
 </html>
